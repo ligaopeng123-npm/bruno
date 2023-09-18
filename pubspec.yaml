@@ -18,6 +18,8 @@ dependencies:
   intl: ^0.18.0
   photo_view: ^0.14.0
   bindings_compatible: ^1.0.1
+  easy_refresh: ^3.3.1+2 # 刷新插件
+  flutter_screenutil: ^5.8.4  # 屏幕尺寸自适应
 
 dev_dependencies:
   flutter_test:
