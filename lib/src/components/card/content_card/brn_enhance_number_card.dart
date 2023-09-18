@@ -257,7 +257,8 @@ class BrnEnhanceNumberCard extends StatelessWidget {
       overflow: TextOverflow.ellipsis,
     );
     Widget? icon;
-    if (model.iconTapCallBack != null) {
+    /// modify by ligm for 支持 itemTapCallBack
+    if (model.iconTapCallBack != null || model.numberInfoIcon == BrnNumberInfoIcon.arrow) {
       icon = BrunoTools.getAssetSizeImage(BrnAsset.iconQuestion, 14, 14);
 
       if (model.numberInfoIcon == BrnNumberInfoIcon.arrow) {
