@@ -66,6 +66,8 @@ class BrnEnhanceNumberCard extends StatelessWidget {
 
   ///每一行显示的数量 默认为3
   final int rowCount;
+  /// add ligm 是否展示Divider
+  final bool hasDivider;
 
   ///背景色 默认为白色
   final Color backgroundColor;
@@ -84,6 +86,8 @@ class BrnEnhanceNumberCard extends StatelessWidget {
     Key? key,
     this.itemChildren,
     this.rowCount = 3,
+    /// add ligm 是否展示Divider
+    this.hasDivider = false,
     this.runningSpace,
     this.itemRunningSpace,
     this.padding = const EdgeInsets.only(left: 20, right: 20),
@@ -142,17 +146,19 @@ class BrnEnhanceNumberCard extends StatelessWidget {
                       Expanded(
                           child: Padding(
                         padding: EdgeInsets.only(
-                            left: isFirst ? 0 : 20, right: condition1 ? 0 : 20),
+                            left: isFirst ? 0 : 8, right: condition1 ? 0 : 8),
                         child: _buildItemWidget(data, defaultConfig,
                             width: singleWidth),
                       )),
                       //分割线的显示规则是：固定高度47
                       //                item之间显示，最后一个不显示
-                      Container(
-                        height: 47,
-                        width: !allCondition ? defaultConfig.dividerWidth : 0,
-                        color: defaultConfig.commonConfig.dividerColorBase,
-                      ),
+                      /// add ligm 是否展示Divider
+                      if (hasDivider)
+                        Container(
+                          height: 47,
+                          width: !allCondition ? defaultConfig.dividerWidth : 0,
+                          color: defaultConfig.commonConfig.dividerColorBase,
+                        ),
                     ],
                   ));
             }).toList(),
@@ -173,7 +179,7 @@ class BrnEnhanceNumberCard extends StatelessWidget {
   Widget _buildItemWidget(
       BrnNumberInfoItemModel model, BrnEnhanceNumberCardConfig config,
       {double? width}) {
-    return Column(
+    var child = Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
@@ -185,6 +191,16 @@ class BrnEnhanceNumberCard extends StatelessWidget {
         _buildBottomWidget(model, config, width: width)
       ],
     );
+    /// add by ligm 定义itemTapCallBack事件
+    if (model.iconTapCallBack != null) {
+      return InkWell(
+        onTap: () {
+          model.itemTapCallBack!(model);
+        },
+        child: child,
+      );
+    }
+    return child;
   }
 
   Widget _buildTopWidget(
@@ -328,6 +344,9 @@ class BrnNumberInfoItemModel {
   ///icon的事件
   final Function(BrnNumberInfoItemModel)? iconTapCallBack;
 
+  ///item范围点击事件
+  final Function(BrnNumberInfoItemModel)? itemTapCallBack;
+
   ///icon的样式 可枚举 , 默认为问号
   final BrnNumberInfoIcon numberInfoIcon;
 
@@ -344,6 +363,7 @@ class BrnNumberInfoItemModel {
     this.title,
     this.numberInfoIcon = BrnNumberInfoIcon.question,
     this.iconTapCallBack,
+    this.itemTapCallBack,
     this.preDesc,
     this.lastDesc,
     this.bottomWidget,
