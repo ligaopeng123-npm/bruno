@@ -249,3 +249,5 @@ export 'src/components/switch/brn_switch_button.dart';
 export 'src/pro/refresh/page_refresh.dart';
 export 'src/pro/refresh/page_card.dart';
 export 'src/pro/refresh/pull_down_refresh.dart';
+// 更多卡片
+export 'src/pro/card/card_extend.dart';
