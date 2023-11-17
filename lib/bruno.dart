@@ -244,6 +244,7 @@ export 'src/components/selectcity/brn_single_select_city_page.dart';
 
 // 切换
 export 'src/components/switch/brn_switch_button.dart';
+export 'src/components/switch/brn_switch_button_base.dart'; // add by ligm12 at 2023-11-17
 
 // 刷新页面
 export 'src/pro/refresh/page_refresh.dart';
