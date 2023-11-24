@@ -22,6 +22,12 @@ class BrnSearchText extends StatefulWidget {
   /// 提示语样式
   final TextStyle? hintStyle;
 
+  /// 取消文本 add by ligm12 at 2023-11-24
+  final String? cancelText;
+
+  /// 取消文本样式 add by ligm12 at 2023-11-24
+  final TextStyle? cancelStyle;
+
   /// 输入框样式
   final TextStyle? textStyle;
 
@@ -96,6 +102,8 @@ class BrnSearchText extends StatefulWidget {
     this.maxLength,
     this.hintText,
     this.hintStyle,
+    this.cancelText, // add by ligm12 at 2023-11-24
+    this.cancelStyle, // add by ligm12 at 2023-11-24
     this.textStyle,
     this.prefixIcon,
     this.onTextChange,
@@ -302,14 +310,17 @@ class _SearchTextState extends State<BrnSearchText> {
                     child: Container(
                       padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
                       child: Text(
-                        BrnIntl.of(context).localizedResource.cancel,
-                        style: TextStyle(
-                            color: BrnThemeConfigurator.instance
-                                .getConfig()
-                                .commonConfig
-                                .colorTextBase,
-                            fontSize: 16,
-                            height: 1),
+                        // add by ligm12 at 2023-11-24
+                        widget.cancelText ??
+                            BrnIntl.of(context).localizedResource.cancel,
+                        style: widget.cancelStyle ??
+                            TextStyle(
+                                color: BrnThemeConfigurator.instance
+                                    .getConfig()
+                                    .commonConfig
+                                    .colorTextBase,
+                                fontSize: 16,
+                                height: 1),
                       ),
                     ),
                   ),
