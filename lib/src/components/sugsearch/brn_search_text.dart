@@ -267,8 +267,10 @@ class _SearchTextState extends State<BrnSearchText> {
                             }
                           }),
                     ),
-                    Visibility(
-                      visible: searchTextController!.isClearShow,
+                    AnimatedOpacity(
+                      // visible: searchTextController!.isClearShow, // modfit by pgli for web 光标组词 at 2023-11-27
+                      opacity: searchTextController!.isClearShow ? 1.0 : 0.0,
+                      duration: Duration(milliseconds: 300),
                       child: GestureDetector(
                         onTap: () {
                           if (widget.onTextClear != null) {
@@ -282,11 +284,13 @@ class _SearchTextState extends State<BrnSearchText> {
                           }
                           setState(() {});
                         },
-                        child: Visibility(
-                          visible: textEditingController!.text.isNotEmpty,
+                        child: AnimatedOpacity(
+                          // visible: textEditingController!.text.isNotEmpty, // modfit by pgli for web 光标组词 at 2023-11-27
+                          opacity: textEditingController!.text.isNotEmpty ? 1.0 : 0.0,
+                          duration: Duration(milliseconds: 300),
                           child: Padding(
                             padding:
-                                const EdgeInsets.symmetric(horizontal: 12.0),
+                            const EdgeInsets.symmetric(horizontal: 12.0),
                             child: BrunoTools.getAssetImage(
                               BrnAsset.iconDeleteText,
                             ),
@@ -298,8 +302,10 @@ class _SearchTextState extends State<BrnSearchText> {
                 ),
               ),
             ),
-            Visibility(
-              visible: searchTextController!.isActionShow,
+            AnimatedOpacity(
+              // visible: searchTextController!.isActionShow, // modfit by pgli for web 光标组词 at 2023-11-27
+              opacity: searchTextController!.isActionShow ? 1.0 : 0.0,
+              duration: Duration(milliseconds: 300),
               child: widget.action ??
                   GestureDetector(
                     onTap: () {
