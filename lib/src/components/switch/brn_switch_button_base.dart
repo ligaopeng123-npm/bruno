@@ -55,7 +55,7 @@ class BrnBaseSwitchButton extends StatelessWidget {
             height: size.height,
             width: size.width,
             decoration: BoxDecoration(
-              color: trackColor,
+              color: value ? activeColor : trackColor,  // add by ligam12 at 2023-11-28
               border: Border.all(
                   color: value ? Colors.transparent : borderColor,
                   width: _borderWidth),
@@ -78,7 +78,7 @@ class BrnBaseSwitchButton extends StatelessWidget {
                 height: size.height - 2 * _borderWidth,
                 width: size.height - 2 * _borderWidth,
                 decoration: BoxDecoration(
-                  color: activeColor ?? thumbColor, // add by ligam12 at 2023-11-28
+                  color: thumbColor,
                   borderRadius: BorderRadius.all(
                       Radius.circular(size.height / 2 - _borderWidth)),
                 ),
