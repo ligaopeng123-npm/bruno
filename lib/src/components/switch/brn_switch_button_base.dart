@@ -22,6 +22,9 @@ class BrnBaseSwitchButton extends StatelessWidget {
   /// The color to use on the track.
   final Color? trackColor;
 
+  /// add by ligam12 at 2023-11-28
+  final Color? activeColor;
+
   /// The color to use on the thumb.
   final Color thumbColor;
 
@@ -32,6 +35,7 @@ class BrnBaseSwitchButton extends StatelessWidget {
     required this.size,
     this.thumbColor = Colors.white,
     this.trackColor,
+    this.activeColor, // add by ligam12 at 2023-11-28
     this.borderColor = const Color(0xffeeeeee),
     this.enabled = false,
   }) : super(key: key);
@@ -74,7 +78,7 @@ class BrnBaseSwitchButton extends StatelessWidget {
                 height: size.height - 2 * _borderWidth,
                 width: size.height - 2 * _borderWidth,
                 decoration: BoxDecoration(
-                  color: thumbColor,
+                  color: activeColor ?? thumbColor, // add by ligam12 at 2023-11-28
                   borderRadius: BorderRadius.all(
                       Radius.circular(size.height / 2 - _borderWidth)),
                 ),
