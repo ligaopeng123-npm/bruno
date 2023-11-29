@@ -34,6 +34,9 @@ class BrnNoticeBar extends StatelessWidget {
   /// 默认样式，取[NoticeStyles]里面的值
   final NoticeStyle? noticeStyle;
 
+  /// 文本样式 add by ligm12 at 2023-11-29
+  final TextStyle? textStyle;
+
   /// 是否跑马灯
   /// 默认值false
   final bool marquee;
@@ -61,6 +64,7 @@ class BrnNoticeBar extends StatelessWidget {
       this.backgroundColor,
       this.rightWidget,
       this.showRightIcon = true,
+      this.textStyle, /// 文本样式 add by ligm12 at 2023-11-29
       this.noticeStyle,
       this.onNoticeTap,
       this.onRightIconTap,
@@ -93,7 +97,7 @@ class BrnNoticeBar extends StatelessWidget {
           color:
               textColor ?? (noticeStyle?.textColor ?? defaultStyle.textColor),
           fontSize: 14,
-        ),
+        ).merge(textStyle), /// 文本样式 add by ligm12 at 2023-11-29
       );
     } else {
       contentWidget = Text(
@@ -103,7 +107,7 @@ class BrnNoticeBar extends StatelessWidget {
           color:
               textColor ?? (noticeStyle?.textColor ?? defaultStyle.textColor),
           fontSize: 14,
-        ),
+        ).merge(textStyle), /// 文本样式 add by ligm12 at 2023-11-29
       );
     }
 
