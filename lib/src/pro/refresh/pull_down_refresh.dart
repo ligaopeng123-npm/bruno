@@ -16,14 +16,17 @@ class PullDownRefresh extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return EasyRefresh(
+    return EasyRefresh.builder(
         header: EasyRefreshClassicHeader,
         onRefresh: () async {
           onRefresh!();
         },
-        child: ListView(
-          padding: EdgeInsets.only(left: 16.w, right: 16.w, bottom: 32.h),
-          children: children,
-        ));
+        childBuilder: (context, physics) {
+          return ListView(
+            physics: physics,
+            padding: EdgeInsets.only(left: 16.w, right: 16.w, bottom: 32.h),
+            children: children,
+          );
+        });
   }
 }
